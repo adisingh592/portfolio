@@ -107,3 +107,16 @@ img {
     animation: none;
   }
 }
+
+/* Card beam (What I do): the "scanned" code side of each card */
+.beam-code {
+  color: rgb(229 229 229 / 0.55);
+  -webkit-mask-image: linear-gradient(to right, #000 0%, rgb(0 0 0 / 0.8) 30%, rgb(0 0 0 / 0.6) 50%, rgb(0 0 0 / 0.4) 80%, rgb(0 0 0 / 0.2) 100%);
+  mask-image: linear-gradient(to right, #000 0%, rgb(0 0 0 / 0.8) 30%, rgb(0 0 0 / 0.6) 50%, rgb(0 0 0 / 0.4) 80%, rgb(0 0 0 / 0.2) 100%);
+  animation: beam-glitch 0.1s infinite linear alternate-reverse;
+}
+@keyframes beam-glitch {
+  0%, 16%, 50%, 100% { opacity: 1; }
+  15%, 99% { opacity: 0.9; }
+  49% { opacity: 0.8; }
+}
