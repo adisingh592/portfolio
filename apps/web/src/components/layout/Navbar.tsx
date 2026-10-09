@@ -11,7 +11,7 @@ import { MobileMenu } from "./MobileMenu";
 
 function Logo() {
   return (
-    <Link to={ROUTES.home} className="group inline-flex min-h-11 items-center gap-2 font-display text-xl font-medium tracking-tight" aria-label={`${profile.shortName}, home`}>
+    <Link to={ROUTES.home} className="group inline-flex min-h-11 items-center gap-2 font-display text-xl font-semibold tracking-tight" aria-label={`${profile.shortName}, home`}>
       <span aria-hidden className="h-2.5 w-2.5 rounded-full bg-accent transition-transform duration-500 ease-house group-hover:scale-125" />
       {profile.shortName}
     </Link>

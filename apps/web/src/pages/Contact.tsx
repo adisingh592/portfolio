@@ -58,7 +58,7 @@ function Input({
   const describedBy = error ? `${id}-error` : undefined;
   const cls = cn(
     "peer w-full border-b bg-transparent py-3 text-lg outline-none transition-colors duration-300 placeholder:text-fg-2/50",
-    error ? "border-accent" : "border-fg/25 hover:border-fg/50 focus:border-fg",
+    error ? "border-danger" : "border-fg/25 hover:border-fg/50 focus:border-fg",
   );
   return (
     <div className="relative">
@@ -74,7 +74,7 @@ function Input({
         {error && (
           <motion.p
             id={`${id}-error`}
-            className="mt-2 text-sm text-accent"
+            className="mt-2 text-sm text-danger"
             initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
@@ -147,7 +147,7 @@ export default function Contact() {
           as="h1"
           trigger="mount"
           lines={["Let's build", "something", <em key="t" className="text-accent">together.</em>]}
-          className="mt-6 font-display text-[clamp(3.25rem,8vw,6.5rem)] font-medium leading-[0.9] tracking-[-0.035em]"
+          className="mt-6 font-display text-[clamp(3.25rem,8vw,6.5rem)] font-semibold leading-[0.9] tracking-[-0.045em]"
         />
         <Reveal trigger="mount" delay={0.4}>
           <p className="mt-8 max-w-md text-lg text-fg-2">I'm open to collaborations, freelance work, internships and interesting opportunities.</p>

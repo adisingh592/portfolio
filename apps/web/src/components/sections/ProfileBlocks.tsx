@@ -22,7 +22,7 @@ export function EducationList() {
         return (
           <Reveal as="li" key={ed.school} className="rounded-[6px] border border-line bg-surface p-6 md:p-8">
             <div className="flex flex-wrap items-baseline justify-between gap-3">
-              <h3 className="font-display text-2xl font-medium tracking-tight">{ed.school}</h3>
+              <h3 className="font-display text-2xl font-semibold tracking-tight">{ed.school}</h3>
               <p className="label">{ed.start} – {ed.end}</p>
             </div>
             <p className="mt-1.5 text-fg-2">{ed.degree}</p>
@@ -68,7 +68,7 @@ export function ExperienceTimeline() {
             <span className={`relative h-[11px] w-[11px] rounded-full border-2 ${x.current ? "border-accent bg-accent" : "border-fg/40 bg-bg"}`} />
           </span>
           <div className="col-span-12 md:col-span-8">
-            <h3 className="font-display text-xl font-medium tracking-tight">{x.org}</h3>
+            <h3 className="font-display text-xl font-semibold tracking-tight">{x.org}</h3>
             <p className="mt-1 text-sm text-fg-2">{x.role}{x.note ? ` · ${x.note}` : ""}</p>
           </div>
           <p className="label col-span-12 pt-1.5 md:col-span-4 md:text-right">
@@ -111,7 +111,7 @@ export function Achievements() {
     <ul className="grid grid-cols-2 gap-6 md:grid-cols-4">
       {stats.map((s, i) => (
         <Reveal as="li" key={s.label} delay={stagger.row(i)} className="border-t border-line pt-5">
-          <span className="font-display text-[clamp(2.5rem,5vw,3.5rem)] font-medium leading-none tracking-[-0.04em]">
+          <span className="font-display text-[clamp(2.5rem,5vw,3.5rem)] font-semibold leading-none tracking-[-0.04em]">
             {Number.isFinite(s.value) ? <CountUp value={s.value} suffix={s.suffix} /> : <span aria-label="Infinite">∞</span>}
           </span>
           <p className="mt-2 text-sm text-fg-2">{s.label}</p>

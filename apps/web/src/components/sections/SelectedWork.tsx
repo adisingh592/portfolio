@@ -30,7 +30,7 @@ function AllWorkCard() {
 export function SelectedWork() {
   const header = (
     <SectionHeader
-      index="01"
+      index="02"
       label="Selected work"
       title="Selected work"
       sub="A few projects across computer vision, edge AI and the web."

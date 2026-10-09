@@ -17,7 +17,7 @@ export function ContactPreview() {
       <div className="mt-8 grid grid-cols-12 items-end gap-x-4 gap-y-10">
         <LineReveal
           lines={["Let's build", <em key="t" className="text-accent">something together.</em>]}
-          className="col-span-12 font-display text-[clamp(3rem,9vw,8rem)] font-medium leading-[0.9] tracking-[-0.035em] lg:col-span-9"
+          className="col-span-12 font-display text-[clamp(3rem,9vw,8rem)] font-semibold leading-[0.9] tracking-[-0.045em] lg:col-span-9"
         />
         <div className="col-span-12 flex items-end justify-between gap-6 lg:col-span-3 lg:flex-col lg:items-start">
           <Reveal delay={0.2}>

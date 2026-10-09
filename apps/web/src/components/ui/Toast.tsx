@@ -43,7 +43,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ opacity: 0, transition: { duration: DUR.exit } }}
                 transition={{ duration: DUR.quick, ease: EASE }}
-                className="pointer-events-auto flex w-full items-start gap-3 rounded-xl border border-line bg-paper p-4 shadow-[0_12px_40px_-16px_rgb(53_39_27/0.35)]"
+                className="pointer-events-auto flex w-full items-start gap-3 rounded-xl border border-line bg-surface p-4 shadow-[0_12px_40px_-16px_rgb(53_39_27/0.35)]"
               >
                 <Icon aria-hidden className={`mt-0.5 h-5 w-5 shrink-0 ${t.tone === "success" ? "text-olive" : "text-accent"}`} />
                 <div className="min-w-0 flex-1">

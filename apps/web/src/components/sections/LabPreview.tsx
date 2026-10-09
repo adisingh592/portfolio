@@ -11,7 +11,7 @@ export function LabPreview() {
   return (
     <section className="gutter py-24 md:py-32">
       <SectionHeader
-        index="03"
+        index="04"
         label="From the lab"
         title="Experimental playground"
         sub="Small experiments, research and random ideas I'm working on."
@@ -33,12 +33,12 @@ export function LabPreview() {
                   height={item.image.height}
                   loading="lazy"
                   decoding="async"
-                  className="aspect-[4/3] w-full object-cover transition-transform duration-[1.6s] ease-house group-hover:scale-[1.04]"
+                  className="aspect-[4/3] w-full object-cover grayscale-[0.85] transition-[transform,filter] group-hover:grayscale-0 duration-[1.6s] ease-house group-hover:scale-[1.04]"
                 />
               </div>
               <div className="mt-4 flex items-start justify-between gap-4">
                 <div>
-                  <h3 className="font-display text-xl font-medium tracking-tight transition-transform duration-500 ease-house group-hover:translate-x-1.5">{item.title}</h3>
+                  <h3 className="font-display text-xl font-semibold tracking-tight transition-transform duration-500 ease-house group-hover:translate-x-1.5">{item.title}</h3>
                   <p className="mt-1 text-sm text-fg-2">{item.body}</p>
                 </div>
                 <ArrowCircle size="sm" />

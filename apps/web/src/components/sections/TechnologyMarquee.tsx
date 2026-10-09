@@ -26,7 +26,7 @@ export function TechnologyMarquee() {
   return (
     <section aria-label="Tools I reach for" className="overflow-hidden py-24 md:py-32">
       <div className="gutter">
-        <SectionHeader index="04" label="Stack" title="Tools I reach for" />
+        <SectionHeader index="05" label="Stack" title="Tools I reach for" />
       </div>
       <ul className="sr-only" aria-label="Technologies I use">
         {technologies.map(t => (
@@ -48,7 +48,7 @@ export function TechnologyMarquee() {
       ) : (
         <Reveal>
           <div aria-hidden className="marquee overflow-hidden border-y border-line py-6 md:py-8">
-            <div className="marquee-track flex w-max font-display text-[clamp(2.75rem,7vw,6rem)] leading-none tracking-[-0.03em]">
+            <div className="marquee-track flex w-max font-display text-[clamp(2.75rem,7vw,6rem)] leading-none tracking-[-0.04em]">
               {row(0)}
               {row(1)}
             </div>

@@ -34,7 +34,7 @@ export function ProjectCard({ project, aspect = "4 / 3", size = "md", priority =
           height={project.cover.height}
           loading={priority ? "eager" : "lazy"}
           decoding="async"
-          className="h-full w-full object-cover transition-transform duration-[1.6s] ease-house group-hover:scale-[1.04] group-focus-visible:scale-[1.04]"
+          className="h-full w-full object-cover grayscale-[0.85] transition-[transform,filter] group-hover:grayscale-0 duration-[1.6s] ease-house group-hover:scale-[1.04] group-focus-visible:scale-[1.04]"
         />
         <span className="pointer-events-none absolute inset-0 rounded-[6px] ring-accent ring-offset-2 ring-offset-bg group-focus-visible:ring-2" />
       </div>

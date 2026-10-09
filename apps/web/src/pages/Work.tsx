@@ -39,7 +39,7 @@ export default function Work() {
             as="h1"
             trigger="mount"
             lines={[<>My <em className="text-accent">work.</em></>]}
-            className="font-display text-[clamp(3.5rem,10vw,8rem)] font-medium leading-[0.9] tracking-[-0.035em]"
+            className="font-display text-[clamp(3.5rem,10vw,8rem)] font-semibold leading-[0.9] tracking-[-0.045em]"
           />
           <Reveal trigger="mount" delay={0.3}>
             <p className="mt-6 max-w-xl text-lg text-fg-2">

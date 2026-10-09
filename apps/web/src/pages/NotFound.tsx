@@ -17,7 +17,7 @@ export default function NotFound() {
         as="h1"
         trigger="mount"
         lines={["This page", <em key="w" className="text-accent">wandered off.</em>]}
-        className="mt-6 font-display text-[clamp(3.25rem,9vw,7.5rem)] font-medium leading-[0.9] tracking-[-0.035em]"
+        className="mt-6 font-display text-[clamp(3.25rem,9vw,7.5rem)] font-semibold leading-[0.9] tracking-[-0.045em]"
       />
       <Reveal trigger="mount" delay={0.35}>
         <p className="mt-6 max-w-md text-lg text-fg-2">The link may be old or mistyped. Here are some ways back.</p>

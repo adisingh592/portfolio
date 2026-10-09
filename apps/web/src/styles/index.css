@@ -35,6 +35,28 @@ h1, h2, h3 {
   text-wrap: balance;
 }
 
+/* shadcn default: borders use the theme line colour unless a class says otherwise */
+@layer base {
+  *, ::before, ::after { border-color: var(--color-border); }
+}
+
+/* Emphasis words in headings: upright, mid-grey (Geist has no true italic) */
+em.text-accent {
+  font-style: normal;
+  color: var(--color-fg-3);
+}
+
+/* Spline scene loading spinner */
+.loader {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid rgb(255 255 255 / 0.12);
+  border-top-color: rgb(255 255 255 / 0.7);
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
 img {
   max-width: 100%;
 }
@@ -45,10 +67,18 @@ img {
   @media (width >= 48rem) { padding-inline: 2.5rem; }
 }
 
+/* The demo's heading treatment: white fading to neutral-400, top to bottom */
+@utility text-gradient {
+  background-image: linear-gradient(to bottom, #fafafa, #a3a3a3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 @utility font-display-tight {
   font-family: var(--font-display);
-  font-weight: 500;
-  letter-spacing: -0.035em;
+  font-weight: 600;
+  letter-spacing: -0.045em;
   line-height: 0.92;
 }
 

@@ -110,7 +110,7 @@ function Palette({ onClose }: { onClose: () => void }) {
   let lastGroup = "";
   return (
     <motion.div
-      className="fixed inset-0 z-[85] flex items-start justify-center bg-fg/40 px-4 pt-[14vh] backdrop-blur-[2px]"
+      className="fixed inset-0 z-[85] flex items-start justify-center bg-black/70 px-4 pt-[14vh] backdrop-blur-[2px]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, transition: { duration: DUR.exit } }}
@@ -121,7 +121,7 @@ function Palette({ onClose }: { onClose: () => void }) {
         role="dialog"
         aria-modal="true"
         aria-label="Search pages and projects"
-        className="w-full max-w-xl overflow-hidden rounded-2xl border border-line bg-paper shadow-[0_30px_80px_-24px_rgb(33_26_21/0.45)]"
+        className="w-full max-w-xl overflow-hidden rounded-2xl border border-line bg-surface shadow-[0_30px_80px_-24px_rgb(33_26_21/0.45)]"
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 10, opacity: 0 }}

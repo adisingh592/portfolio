@@ -1,17 +1,30 @@
-/* Design tokens: Warm Earth. Imported by apps/web/src/styles/index.css after Tailwind. */
+/* Design tokens: Monochrome Dark (from the Spline + Spotlight component).
+   The earlier Warm Earth palette is in git history (commit 622c89d). */
 @theme {
-  --color-bg: #f4ebdd;
-  --color-surface: #faf5ec;
-  --color-surface-alt: #ede1d0;
-  --color-fg: #211a15;
-  --color-fg-2: #75685b;
-  --color-accent: #9b451f;
-  --color-accent-hover: #793719;
-  --color-olive: #6b6a48;
-  --color-line: rgb(53 39 27 / 0.14);
-  --color-paper: #fffdf8;
+  --color-bg: #050505;
+  --color-surface: #0c0c0c;
+  --color-surface-alt: #171717;
+  --color-fg: #fafafa;
+  --color-fg-2: #a3a3a3;
+  --color-fg-3: #737373;
+  /* "accent" is the action colour: light buttons, active states, focus rings */
+  --color-accent: #e5e5e5;
+  --color-accent-hover: #ffffff;
+  --color-olive: #737373;
+  --color-line: rgb(255 255 255 / 0.1);
+  /* text that sits on an accent background */
+  --color-paper: #0a0a0a;
+  --color-danger: #f87171;
 
-  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  /* shadcn names, so copy-pasted shadcn components pick up the theme */
+  --color-background: #050505;
+  --color-foreground: #fafafa;
+  --color-card: #0a0a0a;
+  --color-card-foreground: #fafafa;
+  --color-muted-foreground: #a3a3a3;
+  --color-border: rgb(255 255 255 / 0.1);
+
+  --font-display: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-sans: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "Geist Mono", ui-monospace, Consolas, monospace;
 

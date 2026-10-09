@@ -1,8 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100" width="900" height="1100"><defs></defs>
-  <rect width="900" height="1100" fill="#e9dcc6"/>
-  <circle cx="640" cy="300" r="260" fill="#efd9bb"/>
-  <text x="80" y="760" font-family="Georgia, serif" font-size="420" fill="#2a211b" letter-spacing="-20">AP</text>
-  <text x="560" y="760" font-family="Georgia, serif" font-style="italic" font-size="420" fill="#9b451f">S</text>
-  
-  
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100" width="900" height="1100"><defs><radialGradient id="g" cx=".7" cy=".25" r=".6"><stop offset="0" stop-color="#2a2a2a"/><stop offset="1" stop-color="#0a0a0a"/></radialGradient><linearGradient id="t" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fafafa"/><stop offset="1" stop-color="#737373"/></linearGradient></defs><rect width="900" height="1100" fill="url(#g)"/><text x="80" y="760" font-family="Arial, sans-serif" font-weight="700" font-size="400" fill="url(#t)" letter-spacing="-24">APS</text></svg>

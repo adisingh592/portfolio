@@ -24,7 +24,7 @@ export function WordReveal({ text, className = "", mark = false, delay = 0, trig
           <motion.span
             key={i}
             aria-hidden="true"
-            className="relative inline-block"
+            className="text-gradient relative inline-block"
             style={{ marginRight: last ? 0 : "0.25em" }}
             initial={{ y: 20, opacity: 0 }}
             {...(trigger === "mount"

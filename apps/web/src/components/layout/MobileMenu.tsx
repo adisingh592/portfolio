@@ -40,7 +40,7 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
           transition={{ duration: DUR.base, ease: EASE }}
         >
           <div className="flex items-center justify-between">
-            <span className="flex items-center gap-2 font-display text-xl font-medium">
+            <span className="flex items-center gap-2 font-display text-xl font-semibold">
               <span aria-hidden className="h-2.5 w-2.5 rounded-full bg-accent" />
               {profile.shortName}
             </span>
@@ -69,13 +69,13 @@ export function MobileMenu({ open, onClose }: { open: boolean; onClose: () => vo
                       end={l.to === ROUTES.home}
                       onClick={onClose}
                       className={({ isActive }) =>
-                        cn("flex items-baseline gap-3 py-1 font-display-tight text-[clamp(2.6rem,12vw,4rem)]", isActive ? "italic text-accent" : "text-fg")
+                        cn("flex items-baseline gap-3 py-1 font-display-tight text-[clamp(2.6rem,12vw,4rem)]", isActive ? "text-fg-3" : "text-fg")
                       }
                     >
                       {({ isActive }) => (
                         <>
                           {l.label}
-                          {isActive && <span className="label not-italic">current</span>}
+                          {isActive && <span className="label">current</span>}
                         </>
                       )}
                     </NavLink>

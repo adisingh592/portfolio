@@ -22,13 +22,13 @@ function LabCard({ item, tall }: { item: LabItem; tall: boolean }) {
           height={item.image.height}
           loading="lazy"
           decoding="async"
-          className={`w-full object-cover transition-transform duration-[1.6s] ease-house group-hover:scale-[1.04] ${tall ? "aspect-[4/5]" : "aspect-[4/3]"}`}
+          className={`w-full object-cover grayscale-[0.85] transition-[transform,filter] group-hover:grayscale-0 duration-[1.6s] ease-house group-hover:scale-[1.04] ${tall ? "aspect-[4/5]" : "aspect-[4/3]"}`}
         />
       </div>
       <div className="mt-4 flex items-start justify-between gap-4">
         <div>
           <p className="label">{categoryLabel[item.category]}</p>
-          <h2 className="mt-2 font-display text-2xl font-medium tracking-tight transition-transform duration-500 ease-house group-hover:translate-x-1.5">{item.title}</h2>
+          <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight transition-transform duration-500 ease-house group-hover:translate-x-1.5">{item.title}</h2>
           <p className="mt-1.5 text-sm text-fg-2">{item.body}</p>
         </div>
         {item.href && <ArrowUpRight aria-hidden className="mt-1 h-5 w-5 shrink-0 text-fg-2 transition-transform duration-500 ease-house group-hover:rotate-45 group-hover:text-accent" />}
@@ -62,7 +62,7 @@ export default function Lab() {
             as="h1"
             trigger="mount"
             lines={["Experimental", <em key="p" className="text-accent">playground.</em>]}
-            className="font-display text-[clamp(3.25rem,9vw,7.5rem)] font-medium leading-[0.9] tracking-[-0.035em]"
+            className="font-display text-[clamp(3.25rem,9vw,7.5rem)] font-semibold leading-[0.9] tracking-[-0.045em]"
           />
           <Reveal trigger="mount" delay={0.3}>
             <p className="mt-6 max-w-xl text-lg text-fg-2">Small experiments, research and random ideas I'm working on.</p>

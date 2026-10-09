@@ -25,7 +25,7 @@ export function Stats() {
           return (
             <Reveal as="li" key={s.label} delay={stagger.row(i)} className={cn("flex flex-col gap-3 border-line py-7 md:py-9", cell[i])}>
               <Icon aria-hidden className="h-5 w-5 text-accent" strokeWidth={1.6} />
-              <span className="font-display text-[clamp(2.5rem,5vw,3.75rem)] font-medium leading-none tracking-[-0.04em]">
+              <span className="font-display text-[clamp(2.5rem,5vw,3.75rem)] font-semibold leading-none tracking-[-0.04em]">
                 {Number.isFinite(s.value) ? <CountUp value={s.value} suffix={s.suffix} /> : <span aria-label="Infinite">∞</span>}
               </span>
               <span className="text-sm text-fg-2">{s.label}</span>

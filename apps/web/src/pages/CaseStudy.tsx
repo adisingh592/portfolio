@@ -66,7 +66,7 @@ function CaseStudyView({ project: p }: { project: Project }) {
             as="h1"
             trigger="mount"
             lines={[p.title]}
-            className="font-display text-[clamp(3rem,9vw,7.5rem)] font-medium leading-[0.92] tracking-[-0.035em]"
+            className="font-display text-[clamp(3rem,9vw,7.5rem)] font-semibold leading-[0.92] tracking-[-0.045em]"
           />
           {p.year && (
             <Reveal trigger="mount" delay={0.2}>
@@ -143,7 +143,7 @@ function CaseStudyView({ project: p }: { project: Project }) {
               <LineReveal
                 as="h2"
                 lines={[s.title]}
-                className="mt-4 font-display text-[clamp(2.2rem,4.5vw,3.5rem)] font-medium leading-none tracking-[-0.03em]"
+                className="mt-4 font-display text-[clamp(2.2rem,4.5vw,3.5rem)] font-semibold leading-none tracking-[-0.04em]"
               />
               <div className="mt-8">{s.body}</div>
             </section>
@@ -179,7 +179,7 @@ function CaseStudyView({ project: p }: { project: Project }) {
         <Link to={ROUTES.caseStudy(next.slug)} data-cursor="view" className="group grid grid-cols-12 items-center gap-6">
           <div className="col-span-12 md:col-span-8">
             <p className="label">Next project</p>
-            <p className="mt-4 font-display text-[clamp(2.75rem,8vw,6.5rem)] font-medium leading-[0.92] tracking-[-0.035em] transition-transform duration-500 ease-house group-hover:translate-x-3">
+            <p className="mt-4 font-display text-[clamp(2.75rem,8vw,6.5rem)] font-semibold leading-[0.92] tracking-[-0.045em] transition-transform duration-500 ease-house group-hover:translate-x-3">
               {next.title}
             </p>
             <p className="mt-3 text-fg-2">{next.summary}</p>
@@ -192,7 +192,7 @@ function CaseStudyView({ project: p }: { project: Project }) {
                 width={next.cover.width}
                 height={next.cover.height}
                 loading="lazy"
-                className="aspect-[4/3] w-full object-cover transition-transform duration-[1.6s] ease-house group-hover:scale-[1.06]"
+                className="aspect-[4/3] w-full object-cover grayscale-[0.85] transition-[transform,filter] group-hover:grayscale-0 duration-[1.6s] ease-house group-hover:scale-[1.06]"
               />
             </div>
             <ArrowCircle size="lg" />
@@ -233,7 +233,7 @@ function Steps({ steps }: { steps: { title: string; body: string }[] }) {
       {steps.map((s, i) => (
         <Reveal as="li" key={s.title} delay={stagger.row(i)} className="grid grid-cols-12 gap-4 border-b border-line py-6">
           <span className="label col-span-2 pt-1.5 text-accent md:col-span-1">{String(i + 1).padStart(2, "0")}</span>
-          <h3 className="col-span-10 font-display text-2xl font-medium tracking-tight md:col-span-4">{s.title}</h3>
+          <h3 className="col-span-10 font-display text-2xl font-semibold tracking-tight md:col-span-4">{s.title}</h3>
           <p className="col-span-12 text-fg-2 md:col-span-7">{s.body}</p>
         </Reveal>
       ))}
@@ -247,7 +247,7 @@ function Features({ features }: { features: { title: string; body: string }[] })
       {features.map((f, i) => (
         <Reveal as="li" key={f.title} delay={stagger.card(i)} className="bg-bg p-6">
           <span aria-hidden className="block h-1.5 w-1.5 rounded-full bg-accent" />
-          <h3 className="mt-5 font-display text-xl font-medium tracking-tight">{f.title}</h3>
+          <h3 className="mt-5 font-display text-xl font-semibold tracking-tight">{f.title}</h3>
           <p className="mt-1.5 text-sm text-fg-2">{f.body}</p>
         </Reveal>
       ))}
@@ -260,7 +260,7 @@ function Results({ results }: { results: { value: string; label: string }[] }) {
     <ul className="grid gap-6 sm:grid-cols-3">
       {results.map((r, i) => (
         <Reveal as="li" key={r.label} delay={stagger.card(i)} className="border-t border-line pt-5">
-          <p className="font-display text-5xl font-medium tracking-tight">{r.value}</p>
+          <p className="font-display text-5xl font-semibold tracking-tight">{r.value}</p>
           <p className="mt-2 text-sm text-fg-2">{r.label}</p>
         </Reveal>
       ))}

@@ -14,7 +14,7 @@ const icons: Record<(typeof capabilities)[number]["key"], LucideIcon> = {
 export function Capabilities() {
   return (
     <section className="gutter py-24 md:py-32">
-      <SectionHeader index="02" label="What I do" title="What I do" />
+      <SectionHeader index="03" label="What I do" title="What I do" />
       <ul className="grid grid-cols-1 border-t border-line sm:grid-cols-2 lg:grid-cols-4">
         {capabilities.map((c, i) => {
           const Icon = icons[c.key];
@@ -28,7 +28,7 @@ export function Capabilities() {
               <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-surface-alt text-accent transition-transform duration-500 ease-house group-hover:-rotate-6 group-hover:scale-105">
                 <Icon aria-hidden className="h-5 w-5" strokeWidth={1.6} />
               </span>
-              <h3 className="mt-6 font-display text-2xl font-medium tracking-tight">{c.title}</h3>
+              <h3 className="mt-6 font-display text-2xl font-semibold tracking-tight">{c.title}</h3>
               <p className="mt-2 text-sm text-fg-2">{c.body}</p>
             </Reveal>
           );

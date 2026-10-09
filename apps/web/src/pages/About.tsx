@@ -17,7 +17,7 @@ function Block({ index, label, title, children }: { index: string; label: string
         <Reveal>
           <SectionLabel index={index}>{label}</SectionLabel>
         </Reveal>
-        <LineReveal as="h2" lines={[title]} className="mt-4 font-display text-[clamp(2.2rem,4.5vw,3.5rem)] font-medium leading-none tracking-[-0.03em]" />
+        <LineReveal as="h2" lines={[title]} className="mt-4 font-display text-[clamp(2.2rem,4.5vw,3.5rem)] font-semibold leading-none tracking-[-0.04em]" />
       </div>
       <div className="col-span-12 lg:col-span-8">{children}</div>
     </section>
@@ -42,7 +42,7 @@ export default function About() {
             as="h1"
             trigger="mount"
             lines={["I'm", <em key="n" className="text-accent">{profile.shortName}.</em>]}
-            className="mt-6 font-display text-[clamp(4rem,11vw,9rem)] font-medium leading-[0.88] tracking-[-0.04em]"
+            className="mt-6 font-display text-[clamp(4rem,11vw,9rem)] font-semibold leading-[0.88] tracking-[-0.04em]"
           />
           <Reveal trigger="mount" delay={0.4}>
             <p className="mt-8 max-w-md font-display text-[clamp(1.4rem,2.4vw,1.9rem)] leading-snug tracking-tight">{profile.aboutLead}</p>

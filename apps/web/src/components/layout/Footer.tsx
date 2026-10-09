@@ -20,8 +20,8 @@ function useIndiaTime() {
 function Horizon() {
   return (
     <svg aria-hidden viewBox="0 0 1440 160" preserveAspectRatio="none" className="pointer-events-none absolute inset-x-0 bottom-0 h-28 w-full md:h-36">
-      <path d="M0 110 L140 70 L260 98 L420 40 L560 92 L700 58 L860 104 L1010 50 L1180 96 L1320 66 L1440 92 V160 H0Z" fill="#e6d4bb" />
-      <path d="M0 132 L180 104 L340 128 L520 92 L700 126 L880 100 L1060 130 L1240 106 L1440 124 V160 H0Z" fill="#dcc4a3" />
+      <path d="M0 110 L140 70 L260 98 L420 40 L560 92 L700 58 L860 104 L1010 50 L1180 96 L1320 66 L1440 92 V160 H0Z" fill="#111111" />
+      <path d="M0 132 L180 104 L340 128 L520 92 L700 126 L880 100 L1060 130 L1240 106 L1440 124 V160 H0Z" fill="#161616" />
     </svg>
   );
 }
@@ -32,7 +32,7 @@ export function Footer() {
     <footer className="relative mt-24 overflow-hidden border-t border-line bg-surface pb-40 pt-14 md:pb-48">
       <div className="gutter grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-12">
         <div className="col-span-2 md:col-span-5">
-          <Link to={ROUTES.home} className="inline-flex items-center gap-2 font-display text-2xl font-medium">
+          <Link to={ROUTES.home} className="inline-flex items-center gap-2 font-display text-2xl font-semibold">
             <span aria-hidden className="h-2.5 w-2.5 rounded-full bg-accent" />
             {profile.name}
           </Link>

@@ -38,7 +38,7 @@ export default function Resume() {
             as="h1"
             trigger="mount"
             lines={["My", <em key="r" className="text-accent">resume.</em>]}
-            className="mt-6 font-display text-[clamp(3.5rem,10vw,8rem)] font-medium leading-[0.88] tracking-[-0.035em]"
+            className="mt-6 font-display text-[clamp(3.5rem,10vw,8rem)] font-semibold leading-[0.88] tracking-[-0.045em]"
           />
           <Reveal trigger="mount" delay={0.35}>
             <p className="mt-8 max-w-md text-lg text-fg-2">A quick overview of my education, experience, skills and achievements.</p>

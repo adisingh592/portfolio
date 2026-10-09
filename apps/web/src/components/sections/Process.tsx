@@ -17,7 +17,7 @@ const icons: Record<(typeof processSteps)[number]["key"], LucideIcon> = {
 export function Process() {
   return (
     <section className="gutter py-24 md:py-32">
-      <SectionHeader index="05" label="Process" title="How I build" />
+      <SectionHeader index="06" label="Process" title="How I build" />
       <ol className="relative grid gap-8 md:grid-cols-5 md:gap-6">
         <motion.span
           aria-hidden
@@ -36,7 +36,7 @@ export function Process() {
               </span>
               <div className="md:mt-6">
                 <p className="label">{String(i + 1).padStart(2, "0")}</p>
-                <h3 className="mt-2 font-display text-2xl font-medium tracking-tight">{s.title}</h3>
+                <h3 className="mt-2 font-display text-2xl font-semibold tracking-tight">{s.title}</h3>
                 <p className="mt-1.5 max-w-[22ch] text-sm text-fg-2">{s.body}</p>
               </div>
             </Reveal>

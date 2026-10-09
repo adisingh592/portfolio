@@ -22,7 +22,7 @@ const line: Variants = {
  * The in-view check runs on the heading itself: the hidden lines sit outside their masks, so the
  * browser would report them as never visible.
  */
-export function LineReveal({ lines, as = "h2", className, lineClassName = "", delay = 0, trigger = "inView" }: Props) {
+export function LineReveal({ lines, as = "h2", className, lineClassName = "text-gradient", delay = 0, trigger = "inView" }: Props) {
   const pageDelay = usePageEnterDelay();
   const Tag = motion[as];
   const base = trigger === "mount" ? pageDelay + delay : delay;

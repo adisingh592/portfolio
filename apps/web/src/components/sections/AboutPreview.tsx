@@ -10,15 +10,15 @@ export function AboutPreview() {
   const edu = education[0];
   const current = experience.find(e => e.current);
   return (
-    <section className="gutter border-t border-line py-24 md:py-32">
+    <section id="intro" className="gutter border-t border-line py-24 md:py-32">
       <div className="grid grid-cols-12 gap-x-4 gap-y-8">
         <Reveal className="col-span-12 md:col-span-3">
-          <SectionLabel index="06">About</SectionLabel>
+          <SectionLabel index="01">About</SectionLabel>
         </Reveal>
         <div className="col-span-12 md:col-span-9">
           <LineReveal
             lines={[<>I'm <em className="text-accent">{profile.shortName}.</em></>]}
-            className="font-display text-[clamp(3rem,8vw,6.5rem)] font-medium leading-[0.9] tracking-[-0.035em]"
+            className="font-display text-[clamp(3rem,8vw,6.5rem)] font-semibold leading-[0.9] tracking-[-0.045em]"
           />
           <Reveal delay={0.2}>
             <p className="mt-8 max-w-2xl font-display text-[clamp(1.4rem,2.6vw,2rem)] leading-snug tracking-tight text-fg">{profile.intro}</p>

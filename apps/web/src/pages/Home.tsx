@@ -14,13 +14,13 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <AboutPreview />
       <Stats />
       <SelectedWork />
       <Capabilities />
       <LabPreview />
       <TechnologyMarquee />
       <Process />
-      <AboutPreview />
       <ContactPreview />
     </>
   );
