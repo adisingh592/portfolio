@@ -108,6 +108,6 @@ The form validates and shows clear errors, but it does not deliver messages yet.
 
 ## Deploying
 
-- **Frontend:** Vercel, with root directory `apps/web`. `vercel.json` already sends all page routes to `index.html`.
+- **Frontend:** Vercel, deployed from the **repo root** (Project Settings → Build and Deployment → Root Directory left empty). The root `vercel.json` installs the whole workspace with `npm ci`, builds `@portfolio/web`, serves `apps/web/dist`, and sends all page routes to `index.html`. Don't set Root Directory to `apps/web`: that folder can't build on its own because TypeScript, Vite and the shared packages are installed at the root.
 - **API:** any Node host (Render, Railway, Fly.io). Build with `npm run build -w apps/api`, start with `npm run start -w apps/api`. Set `CORS_ORIGIN` to the frontend URL.
 - Set `VITE_API_URL` on the frontend to the API's URL.
