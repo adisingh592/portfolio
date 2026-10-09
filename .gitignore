@@ -1,0 +1,90 @@
+# ─────────────────────────────────────────────
+# Dependencies
+# ─────────────────────────────────────────────
+node_modules/
+.pnpm-store/
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+
+# ─────────────────────────────────────────────
+# Build output (apps/web/dist, apps/api/dist)
+# ─────────────────────────────────────────────
+dist/
+dist-ssr/
+build/
+out/
+*.tsbuildinfo
+vite.config.*.timestamp-*
+
+# ─────────────────────────────────────────────
+# Environment and secrets
+# Keep the .env.example templates; ignore every real env file.
+# ─────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+*.p12
+secrets/
+
+# ─────────────────────────────────────────────
+# Logs
+# ─────────────────────────────────────────────
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ─────────────────────────────────────────────
+# Caches and test output
+# ─────────────────────────────────────────────
+.cache/
+.eslintcache
+.stylelintcache
+.turbo/
+.vite/
+.temp/
+.tmp/
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+lighthouse-report*/
+
+# ─────────────────────────────────────────────
+# Deployment
+# ─────────────────────────────────────────────
+.vercel/
+.netlify/
+
+# ─────────────────────────────────────────────
+# Editors and OS files
+# Shared VS Code settings and extension suggestions stay tracked.
+# ─────────────────────────────────────────────
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ─────────────────────────────────────────────
+# Office lock files (e.g. while the plan .docx is open in Word)
+# ─────────────────────────────────────────────
+~$*
+
+# ─────────────────────────────────────────────
+# Local AI assistant settings (personal, not project)
+# ─────────────────────────────────────────────
+.claude/settings.local.json

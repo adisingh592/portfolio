@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@import "@portfolio/ui/styles/tokens.css";
+
+/* Let Tailwind see classes used inside the shared UI package */
+@source "../../../../packages/ui/src";
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-bg);
+  color: var(--color-fg);
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
