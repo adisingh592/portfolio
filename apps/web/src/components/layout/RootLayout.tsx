@@ -1,39 +1,45 @@
-import { NavLink, Outlet } from "react-router";
-import { ROUTES } from "@portfolio/shared";
-import { cn } from "@portfolio/ui";
-import { profile } from "@/data/profile";
+import { MotionConfig, useReducedMotion } from "motion/react";
+import { useEffect } from "react";
+import { destroyLenis, startLenis } from "@/lib/lenis";
+import { ToastProvider } from "@/components/ui/Toast";
+import { CommandPaletteProvider } from "./CommandPalette";
+import { Cursor } from "./Cursor";
+import { FloatingContact } from "./FloatingContact";
+import { Navbar } from "./Navbar";
+import { AnimatedOutlet } from "./PageTransition";
+import { Preloader } from "./Preloader";
 
-const links = [
-  { to: ROUTES.work, label: "Work" },
-  { to: ROUTES.about, label: "About" },
-  { to: ROUTES.lab, label: "Lab" },
-  { to: ROUTES.contact, label: "Contact" },
-];
+/** Smooth scrolling (N03). Skipped entirely for reduced motion. */
+function useSmoothScroll() {
+  const reduce = useReducedMotion();
+  useEffect(() => {
+    if (reduce) return;
+    startLenis();
+    return destroyLenis;
+  }, [reduce]);
+}
 
 export function RootLayout() {
+  useSmoothScroll();
   return (
-    <div className="min-h-screen">
-      <header className="flex items-center justify-between px-4 py-5 sm:px-6 md:px-10">
-        <NavLink to={ROUTES.home} className="font-display text-lg font-semibold">
-          {profile.name}
-        </NavLink>
-        <nav className="flex gap-6 text-sm">
-          {links.map(l => (
-            <NavLink
-              key={l.to}
-              to={l.to}
-              className={({ isActive }) =>
-                cn("transition-colors hover:text-fg", isActive ? "text-accent" : "text-fg/70")
-              }
-            >
-              {l.label}
-            </NavLink>
-          ))}
-        </nav>
-      </header>
-      <main>
-        <Outlet />
-      </main>
-    </div>
+    <MotionConfig reducedMotion="user">
+      <ToastProvider>
+        <CommandPaletteProvider>
+          <a
+            href="#main"
+            className="fixed left-4 top-4 z-[100] -translate-y-24 rounded-full bg-fg px-4 py-2 text-sm text-paper focus:translate-y-0"
+          >
+            Skip to content
+          </a>
+          <div className="relative min-h-screen">
+            <Navbar />
+            <AnimatedOutlet />
+          </div>
+          <FloatingContact />
+          <Cursor />
+          <Preloader />
+        </CommandPaletteProvider>
+      </ToastProvider>
+    </MotionConfig>
   );
 }

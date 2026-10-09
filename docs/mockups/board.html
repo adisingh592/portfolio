@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Portfolio overview board</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;1,6..72,400&family=Geist:wght@400;500&family=Geist+Mono&display=swap" rel="stylesheet">
+<style>
+/* Overview of the live site, rendered from real screenshots in ./pages. Warm Earth palette. */
+:root { --bg: #ede1d0; --card: #f4ebdd; --fg: #211a15; --fg-2: #75685b; --accent: #9b451f; --line: rgb(53 39 27 / .14); }
+* { box-sizing: border-box; margin: 0; }
+body { background: var(--bg); color: var(--fg); font-family: Geist, system-ui, sans-serif; padding: 56px; width: 2400px; }
+header { display: flex; justify-content: space-between; align-items: end; margin-bottom: 44px; }
+h1 { font: 500 76px/0.95 Newsreader, Georgia, serif; letter-spacing: -0.035em; }
+h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
+.meta { font: 15px/1.6 "Geist Mono", monospace; color: var(--fg-2); text-align: right; }
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+figure { display: grid; gap: 12px; }
+figcaption { font: 500 18px/1 Geist, sans-serif; display: flex; gap: 10px; align-items: baseline; }
+figcaption span { font: 14px/1 "Geist Mono", monospace; color: var(--accent); }
+.shot { border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: var(--card); box-shadow: 0 24px 48px -32px rgb(53 39 27 / .45); }
+.shot img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 44px; align-items: start; }
+.banner { margin-top: 44px; }
+.phones { display: flex; gap: 22px; justify-content: space-between; align-items: start; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 34px 30px; }
+.phone { width: 100%; max-width: 250px; border-radius: 34px; background: #1c1612; padding: 8px; box-shadow: 0 24px 40px -24px rgb(33 26 21 / .6); }
+.phone img { display: block; width: 100%; border-radius: 27px; aspect-ratio: 390 / 844; object-fit: cover; object-position: top; }
+.pcap { font: 13px/1 "Geist Mono", monospace; color: var(--fg-2); text-align: center; margin-top: 12px; }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Aditya Pratap Singh <em>— portfolio.</em></h1>
+    <p class="meta">Warm Earth theme · live screenshots<br>Vite · React · Tailwind v4 · Motion · Lenis</p>
+  </header>
+
+  <section class="grid">
+    <figure><figcaption><span>01.</span>Home Page</figcaption><div class="shot"><img src="pages/01-home.png" alt=""></div></figure>
+    <figure><figcaption><span>02.</span>About Page</figcaption><div class="shot"><img src="pages/02-about.png" alt=""></div></figure>
+    <figure><figcaption><span>03.</span>Work / Projects Page</figcaption><div class="shot"><img src="pages/03-work.png" alt=""></div></figure>
+    <figure><figcaption><span>04.</span>Project Detail Page</figcaption><div class="shot"><img src="pages/04-project-detail.png" alt=""></div></figure>
+    <figure><figcaption><span>05.</span>Lab Page</figcaption><div class="shot"><img src="pages/05-lab.png" alt=""></div></figure>
+    <figure><figcaption><span>06.</span>Contact Page</figcaption><div class="shot"><img src="pages/06-contact.png" alt=""></div></figure>
+    <figure><figcaption><span>07.</span>Resume Page</figcaption><div class="shot"><img src="pages/07-resume.png" alt=""></div></figure>
+    <figure><figcaption><span>08.</span>404 Page</figcaption><div class="shot"><img src="pages/08-not-found.png" alt=""></div></figure>
+  </section>
+
+  <section class="row2">
+    <figure>
+      <figcaption><span>09.</span>Mobile Responsive View</figcaption>
+      <div class="phones">
+        <div><div class="phone"><img src="pages/m1-home.png" alt=""></div><p class="pcap">Home</p></div>
+        <div><div class="phone"><img src="pages/m2-work.png" alt=""></div><p class="pcap">Work</p></div>
+        <div><div class="phone"><img src="pages/m3-about.png" alt=""></div><p class="pcap">About</p></div>
+        <div><div class="phone"><img src="pages/m4-contact.png" alt=""></div><p class="pcap">Contact</p></div>
+      </div>
+    </figure>
+    <figure><figcaption><span>10.</span>Sticky project rail (scrolls sideways)</figcaption><div class="shot"><img src="pages/01b-home-project-rail.png" alt="" style="aspect-ratio: 16 / 10"></div></figure>
+  </section>
+
+  <section class="banner">
+    <figure><figcaption><span>11.</span>Tools I reach for: looping marquee</figcaption><div class="shot"><img src="pages/01c-home-tools-marquee.png" alt="" style="aspect-ratio: 1440 / 230; object-position: 50% 43%"></div></figure>
+  </section>
+</body>
+</html>

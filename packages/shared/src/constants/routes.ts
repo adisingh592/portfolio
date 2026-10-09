@@ -5,6 +5,7 @@ export const ROUTES = {
   about: "/about",
   lab: "/lab",
   contact: "/contact",
+  resume: "/resume",
 } as const;
 
 export const API = {

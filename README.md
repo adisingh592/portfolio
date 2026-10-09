@@ -9,19 +9,21 @@ The plan, effect catalogue and build phases are in [docs/](docs/).
 ```
 onlineportfolio/
 ├── apps/
-│   ├── web/                    Frontend: Vite + React + Tailwind v4 + Motion
-│   │   ├── public/             Static files served as-is (favicon, OG images)
+│   ├── web/                    Frontend: Vite + React + Tailwind v4 + Motion + Lenis
+│   │   ├── public/images/      Placeholder artwork (hero, projects, lab, portrait). Replace with real images.
 │   │   └── src/
-│   │       ├── app/            App root and router
-│   │       ├── pages/          One file per route: Home, Work, CaseStudy, About, Lab, Contact, NotFound
+│   │       ├── app/            App root and router (8 routes)
+│   │       ├── pages/          Home, Work, CaseStudy, About, Lab, Contact, Resume, NotFound
 │   │       ├── components/
-│   │       │   ├── layout/     Nav, footer, page transition, root layout
-│   │       │   └── sections/   Page sections: hero, marquee, project rail, stats
-│   │       ├── hooks/          Frontend-only hooks
-│   │       ├── lib/            API client and helpers
-│   │       ├── data/           Site copy (profile.ts)
-│   │       ├── styles/         Global CSS (imports Tailwind + UI tokens)
-│   │       └── assets/         Images and fonts bundled by Vite
+│   │       │   ├── layout/     Navbar, MobileMenu, Footer, PageTransition, CommandPalette,
+│   │       │   │               Cursor, FloatingContact, Preloader, RootLayout
+│   │       │   ├── motion/     Reveal, WordReveal, LineReveal, CountUp, ImageReveal, MagneticButton
+│   │       │   ├── sections/   Home sections, ProjectRail, TechnologyMarquee, ProfileBlocks
+│   │       │   └── ui/         Button, Chip, ProjectCard, SectionLabel, ScrollProgress, Toast, TechIcon
+│   │       ├── data/           All content: profile.ts, projects.ts, technologies.ts, lab.ts
+│   │       ├── hooks/          useMediaQuery, useActiveSection, useDocumentTitle
+│   │       ├── lib/            motion.ts (shared animation values), lenis.ts, contact.ts, intro.ts, api.ts
+│   │       └── styles/         Global CSS (imports Tailwind + UI tokens + Lenis)
 │   │
 │   └── api/                    Backend: Express 5 + TypeScript
 │       └── src/
@@ -36,11 +38,8 @@ onlineportfolio/
 ├── packages/
 │   ├── ui/                     Shared design system
 │   │   └── src/
-│   │       ├── tokens/         Motion tokens: EASE, DUR, STAGGER, VIEWPORT
-│   │       ├── styles/         tokens.css: colours, fonts, keyframes, reduced motion
-│   │       ├── motion/         Reveal, WordReveal, LineReveal, CountUp (phase 1)
-│   │       ├── components/     Button, Chip, Cursor, Marquee (phases 1–6)
-│   │       ├── hooks/          Shared hooks
+│   │       ├── tokens/         Motion tokens: EASE, DUR, STAGGER, VIEWPORT, SPRING
+│   │       ├── styles/         tokens.css: Warm Earth colours, fonts, keyframes, reduced motion
 │   │       └── lib/            cn() class helper
 │   │
 │   └── shared/                 Code used by both web and api
@@ -66,6 +65,27 @@ npm run dev
 - API: http://localhost:4000/api/health
 
 In development, the frontend forwards `/api/*` requests to the API, so the frontend code calls `/api/...` with no hostname.
+
+## Making it yours
+
+All content lives in `apps/web/src/data/`. Components only read from there.
+
+| What | Where |
+|---|---|
+| Name, intro, email, story | `data/profile.ts` |
+| Portrait (About page only) | Put the photo in `public/images/`, set `profile.portrait` (e.g. `"/images/portrait.jpg"`) |
+| Resume PDF | Put it in `public/resume/`, set `profile.resumePdf`. The preview and download button appear automatically |
+| LinkedIn | `socials.linkedin` in `data/profile.ts`. Hidden while empty |
+| Projects, case studies, links, results | `data/projects.ts`. Live demo, GitHub and video buttons appear only when a URL is set |
+| Lab experiments | `data/lab.ts`. Cards become links when `href` is set |
+| Images | Replace the SVG placeholders in `public/images/`, or point the data at new files |
+
+### Contact form
+
+The form validates and shows clear errors, but it does not deliver messages yet. Until it does, it offers to open the message in the visitor's email app instead of claiming it was sent. To turn on delivery:
+
+1. Implement `apps/api/src/services/mail.service.ts` (e.g. with Resend) and set its env vars in `apps/api/.env`.
+2. Set `VITE_CONTACT_ENABLED=true` in `apps/web/.env.local`.
 
 ## Scripts (run from the root)
 

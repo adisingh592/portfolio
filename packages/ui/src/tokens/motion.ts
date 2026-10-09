@@ -20,3 +20,6 @@ export const STAGGER = {
 } as const;
 
 export const VIEWPORT = { once: true, margin: "0px 0px -60px 0px" } as const;
+
+/** Spring used by magnetic buttons and the cursor follower (N08, N09). */
+export const SPRING = { stiffness: 150, damping: 15, mass: 0.1 } as const;

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100" width="900" height="1100"><defs></defs>
+  <rect width="900" height="1100" fill="#e9dcc6"/>
+  <circle cx="640" cy="300" r="260" fill="#efd9bb"/>
+  <text x="80" y="760" font-family="Georgia, serif" font-size="420" fill="#2a211b" letter-spacing="-20">AP</text>
+  <text x="560" y="760" font-family="Georgia, serif" font-style="italic" font-size="420" fill="#9b451f">S</text>
+  
+  
+</svg>

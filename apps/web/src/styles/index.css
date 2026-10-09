@@ -1,16 +1,79 @@
 @import "tailwindcss";
 @import "@portfolio/ui/styles/tokens.css";
+@import "lenis/dist/lenis.css";
 
 /* Let Tailwind see classes used inside the shared UI package */
 @source "../../../../packages/ui/src";
 
+/* No CSS smooth scrolling: Lenis owns scrolling (N03) and native smooth scroll would fight it. */
 html {
-  scroll-behavior: smooth;
   background: var(--color-bg);
   color: var(--color-fg);
 }
 
 body {
   font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+img {
+  max-width: 100%;
+}
+
+@utility gutter {
+  padding-inline: 1rem;
+  @media (width >= 40rem) { padding-inline: 1.5rem; }
+  @media (width >= 48rem) { padding-inline: 2.5rem; }
+}
+
+@utility font-display-tight {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+}
+
+@utility label {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1;
+  color: var(--color-fg-2);
+  letter-spacing: 0.01em;
+}
+
+/* Marquee (S01). Two identical copies inside the track; translate by half its width. */
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.ping-soft {
+  animation: ping-soft 1.8s cubic-bezier(0, 0, .2, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track, .ping-soft {
+    animation: none;
+  }
 }
