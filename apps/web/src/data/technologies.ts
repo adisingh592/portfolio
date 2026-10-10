@@ -21,6 +21,13 @@ export const technologies: Technology[] = [
   { name: "Git & GitHub", icon: siGithub, tone: "olive", italic: true },
 ];
 
+/** Brand colour from simple-icons, swapped for white when it would vanish on the dark theme. */
+export function brandColor(icon: SimpleIcon) {
+  const n = parseInt(icon.hex, 16);
+  const [r, g, b] = [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  return 0.299 * r + 0.587 * g + 0.114 * b < 70 ? "#fafafa" : `#${icon.hex}`;
+}
+
 export const skillGroups = [
   { title: "AI & vision", items: ["PyTorch", "TensorFlow", "YOLO", "OCR"] },
   { title: "Web", items: ["React", "TypeScript", "Node.js", "MongoDB", "Firebase"] },
