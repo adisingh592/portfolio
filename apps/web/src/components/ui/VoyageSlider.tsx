@@ -4,6 +4,8 @@ import { useEffect, useRef, useState, type CSSProperties, type PointerEvent as R
 import { Link } from "react-router";
 import { ROUTES } from "@portfolio/shared";
 import type { Project } from "@/data/projects";
+import { useFinePointer } from "@/hooks/useMediaQuery";
+import { ParticleImage, particlePresets } from "@/components/motion/ParticleImage";
 
 /*
  * 3D card slider: the current project sits forward, its neighbours angle away on either side,
@@ -70,6 +72,29 @@ function useTilt(disabled: boolean) {
 export function VoyageSlider({ projects }: { projects: readonly Project[] }) {
   const n = projects.length;
   const reduce = useReducedMotion() ?? false;
+  const finePointer = useFinePointer();
+  const rootRef = useRef<HTMLDivElement>(null);
+  const [revealed, setRevealed] = useState(false);
+  const [intro, setIntro] = useState(false);
+
+  // Cards wipe in the first time the slider scrolls into view.
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setRevealed(true);
+          setIntro(true);
+          window.setTimeout(() => setIntro(false), 2600);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.35 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
   const [index, setIndex] = useState(0);
   const [dir, setDir] = useState<1 | -1>(1);
   const tilt = useTilt(reduce);
@@ -104,7 +129,10 @@ export function VoyageSlider({ projects }: { projects: readonly Project[] }) {
 
   return (
     <div
+      ref={rootRef}
       className="voyage relative isolate overflow-hidden"
+      data-revealed={revealed || undefined}
+      data-intro={intro || undefined}
       onPointerDown={onPointerDown}
       onPointerUp={onPointerUp}
       onClickCapture={(e) => {
@@ -158,7 +186,18 @@ export function VoyageSlider({ projects }: { projects: readonly Project[] }) {
                 >
                   <div ref={(el) => void (innerRefs.current[i] = el)} className="voyage-inner">
                     <div className="voyage-image">
-                      <img src={p.cover.src} alt="" width={p.cover.width} height={p.cover.height} draggable={false} />
+                      {/* Outer slides down while inner slides up: a wipe that leaves the image still */}
+                      <div className="voyage-wipe" style={{ "--order": role === "previous" ? 0 : role === "current" ? 1 : 2 } as CSSProperties}>
+                        <div className="voyage-wipe-inner">
+                          <ParticleImage
+                            src={p.cover.src}
+                            preset={particlePresets[i % particlePresets.length]}
+                            forceColor={current && !finePointer}
+                            reduce={reduce}
+                            className="voyage-canvas"
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </Link>

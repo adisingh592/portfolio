@@ -221,18 +221,47 @@ img {
   overflow: hidden;
   border-radius: 6px;
 }
-.voyage-image img {
+.voyage-canvas {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 100%;
   height: 100%;
-  object-fit: cover;
   transform: translate(-50%, -50%) scale(1.25) translate3d(var(--bgPosX, 0), var(--bgPosY, 0), 0);
-  filter: brightness(0.5);
+  filter: brightness(0.6);
   transition: filter var(--slide-duration) var(--slide-ease);
 }
-.voyage-slide[data-role="current"] .voyage-image img { filter: brightness(0.8); }
+.voyage-slide[data-role="current"] .voyage-canvas { filter: brightness(0.95); }
+
+/* Sharp colour image under the cursor on spotlight cards */
+.particle-lens {
+  --lx: 50%;
+  --ly: 50%;
+  --lr: 0px;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(circle var(--lr) at var(--lx) var(--ly), #000 72%, transparent 100%);
+  mask-image: radial-gradient(circle var(--lr) at var(--lx) var(--ly), #000 72%, transparent 100%);
+}
+
+/* Entrance wipe (from the canvas hover pen): outer drops in while inner rises, staggered */
+.voyage-wipe,
+.voyage-wipe-inner {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+  transition-delay: calc(0.8s + var(--order, 0) * 0.1s);
+}
+.voyage-wipe-inner { transition-delay: inherit; }
+.voyage:not([data-revealed]) .voyage-wipe { transform: translateY(-100%); }
+.voyage:not([data-revealed]) .voyage-wipe-inner { transform: translateY(100%); }
+.voyage:not([data-revealed]) .voyage-text span { opacity: 0; transform: translate3d(0, 100%, 0); }
+.voyage[data-intro] .voyage-info[data-role="current"] .voyage-text span { transition-duration: 1.2s; transition-delay: 1.2s; }
 
 .voyage-info {
   position: relative;
