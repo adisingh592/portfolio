@@ -26,7 +26,7 @@ export function TechnologyMarquee() {
   return (
     <section aria-label="Tools I reach for" className="overflow-hidden py-24 md:py-32">
       <div className="gutter">
-        <SectionHeader index="05" label="Stack" title="Tools I reach for" />
+        <SectionHeader index="06" label="Stack" title="Tools I reach for" />
       </div>
       <ul className="sr-only" aria-label="Technologies I use">
         {technologies.map(t => (

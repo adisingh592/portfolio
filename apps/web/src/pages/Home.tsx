@@ -19,8 +19,8 @@ export default function Home() {
       <Capabilities />
       <SelectedWork />
       <LabPreview />
-      <TechnologyMarquee />
       <Process />
+      <TechnologyMarquee />
       <ContactPreview />
     </>
   );
