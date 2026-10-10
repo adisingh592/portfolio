@@ -23,6 +23,9 @@ export function AboutPreview() {
           <Reveal delay={0.2}>
             <p className="mt-8 max-w-2xl font-display text-[clamp(1.4rem,2.6vw,2rem)] leading-snug tracking-tight text-fg">{profile.intro}</p>
           </Reveal>
+          <Reveal delay={0.25}>
+            <p className="mt-5 max-w-2xl text-lg text-fg-2">{profile.introDetail}</p>
+          </Reveal>
           <Reveal delay={0.3}>
             <dl className="mt-10 grid max-w-2xl gap-6 border-t border-line pt-6 text-sm sm:grid-cols-2">
               <div>

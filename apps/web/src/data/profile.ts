@@ -8,7 +8,11 @@ export const profile = {
   roles: "CSE Student · Developer · Creative Technologist",
   heroLines: ["CODE.", "MODELS.", "IMPACT."],
   heroSummary: "Building intelligent systems and digital products at the intersection of AI, engineering and design.",
-  intro: "A CSE student, developer and creative technologist who enjoys turning ideas into real products.",
+  // Home "I'm Aditya." section: the heading supplies the name, so these start after it.
+  intro:
+    "A Computer Science Engineering student at SRM University–AP, passionate about building intelligent systems, meaningful digital products, and immersive experiences.",
+  introDetail:
+    "My interests lie at the intersection of Artificial Intelligence, Machine Learning, full-stack development, computer vision, and creative technology.",
   aboutLead: "A CSE student, developer and creative technologist.",
   aboutBody:
     "I enjoy building AI systems, full-stack products and immersive experiences at the intersection of engineering, intelligence and design.",
