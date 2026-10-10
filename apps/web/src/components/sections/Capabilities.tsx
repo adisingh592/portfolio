@@ -86,7 +86,7 @@ export function Capabilities() {
   return (
     <section className="py-24 md:py-32">
       <div className="gutter">
-        <SectionHeader index="03" label="What I do" title="What I do" />
+        <SectionHeader index="02" label="What I do" title="What I do" />
       </div>
 
       {reduce ? (

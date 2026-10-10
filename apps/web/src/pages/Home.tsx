@@ -16,8 +16,8 @@ export default function Home() {
       <Hero />
       <AboutPreview />
       <Stats />
-      <SelectedWork />
       <Capabilities />
+      <SelectedWork />
       <LabPreview />
       <TechnologyMarquee />
       <Process />

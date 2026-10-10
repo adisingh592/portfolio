@@ -10,7 +10,7 @@ export function SelectedWork() {
     <section className="pt-24 md:pt-32">
       <div className="gutter">
         <SectionHeader
-          index="02"
+          index="03"
           label="Selected work"
           title="Selected work"
           sub="A few projects across computer vision, edge AI and the web."
