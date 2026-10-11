@@ -10,6 +10,9 @@ export function startLenis() {
   return lenis;
 }
 
+/** The running instance, for callers that need Lenis-only options (duration, onComplete). */
+export const getLenis = () => lenis;
+
 export function destroyLenis() {
   lenis?.destroy();
   lenis = null;
