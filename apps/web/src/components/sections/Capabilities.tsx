@@ -1,6 +1,9 @@
 import { useReducedMotion } from "motion/react";
-import { Boxes, BrainCircuit, Layers, ScanEye, type LucideIcon } from "lucide-react";
+import { ArrowUpRight, Boxes, BrainCircuit, Layers, ScanEye, type LucideIcon } from "lucide-react";
+import { Link } from "react-router";
+import { ROUTES } from "@portfolio/shared";
 import { capabilities } from "@/data/profile";
+import { getProject } from "@/data/projects";
 import { stagger } from "@/lib/motion";
 import { CardBeam, type BeamItem } from "@/components/motion/CardBeam";
 import { Reveal } from "@/components/motion/Reveal";
@@ -59,22 +62,58 @@ const code: Record<Key, readonly string[]> = {
   ],
 };
 
+/** The project each card opens, and the tools shown when it's hovered. */
+const showcase: Record<Key, { slug: string; stack: string }> = {
+  ai: { slug: "multi-disease-prediction", stack: "PyTorch · TensorFlow · scikit-learn" },
+  fullstack: { slug: "study-sphere", stack: "React · Node.js · MongoDB" },
+  vision: { slug: "drishti-guard", stack: "YOLO · OpenCV · Tracking" },
+  creative: { slug: "3d-environment", stack: "Blender · Unreal Engine · Figma" },
+};
+
 const items: BeamItem[] = capabilities.map((c, i) => {
   const Icon = icons[c.key];
+  const project = getProject(showcase[c.key].slug);
   return {
     key: c.key,
     code: code[c.key],
+    href: project ? ROUTES.caseStudy(project.slug) : undefined,
     face: (
-      <div className="flex h-full flex-col justify-between rounded-2xl border border-line bg-gradient-to-br from-surface-alt to-surface p-6 shadow-[0_15px_40px_rgb(0_0_0/0.5)]">
-        <div className="flex items-start justify-between">
-          <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-bg/60 text-accent">
-            <Icon aria-hidden className="h-5 w-5" strokeWidth={1.6} />
-          </span>
-          <span className="font-mono text-xs text-fg-3">[0{i + 1}]</span>
-        </div>
-        <div>
-          <h3 className="font-display text-2xl font-semibold tracking-tight">{c.title}</h3>
-          <p className="mt-1.5 text-sm text-fg-2">{c.body}</p>
+      <div className="relative h-full overflow-hidden rounded-2xl border border-line bg-gradient-to-br from-surface-alt to-surface shadow-[0_15px_40px_rgb(0_0_0/0.5)] transition-colors duration-500 group-hover:border-fg/30">
+        {/* Project preview: the cover fades in behind the text on hover */}
+        {project && (
+          <>
+            <img
+              src={project.cover.src}
+              alt=""
+              draggable={false}
+              className="absolute inset-0 h-full w-full scale-105 object-cover opacity-0 grayscale transition-all duration-700 ease-house group-hover:scale-100 group-hover:opacity-35"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/70 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+          </>
+        )}
+
+        <div className="relative flex h-full flex-col justify-between p-6">
+          <div className="flex items-start justify-between">
+            <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-bg/60 text-accent transition-transform duration-500 ease-house group-hover:-rotate-6 group-hover:scale-105">
+              <Icon aria-hidden className="h-5 w-5" strokeWidth={1.6} />
+            </span>
+            <span className="font-mono text-xs text-fg-3">[0{i + 1}]</span>
+          </div>
+          <div>
+            <h3 className="font-display text-2xl font-semibold tracking-tight">{c.title}</h3>
+            {/* Body swaps for the project detail on hover */}
+            <div className="relative mt-1.5 h-10 overflow-hidden text-sm">
+              <p className="text-fg-2 transition-all duration-500 ease-house group-hover:-translate-y-full group-hover:opacity-0">
+                {c.body}
+              </p>
+              <div className="absolute inset-0 translate-y-full opacity-0 transition-all duration-500 ease-house group-hover:translate-y-0 group-hover:opacity-100">
+                <p className="flex items-center gap-1.5 font-medium text-fg">
+                  {project?.title} <ArrowUpRight aria-hidden className="h-3.5 w-3.5" />
+                </p>
+                <p className="mt-0.5 truncate font-mono text-[11px] text-fg-3">{showcase[c.key].stack}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     ),
@@ -113,11 +152,15 @@ export function Capabilities() {
         <>
           {/* The beam is decorative; screen readers get the plain list. */}
           <ul className="sr-only">
-            {capabilities.map((c) => (
-              <li key={c.key}>
-                {c.title}: {c.body}
-              </li>
-            ))}
+            {capabilities.map((c) => {
+              const project = getProject(showcase[c.key].slug);
+              return (
+                <li key={c.key}>
+                  {c.title}: {c.body}{" "}
+                  {project && <Link to={ROUTES.caseStudy(project.slug)}>See {project.title}</Link>}
+                </li>
+              );
+            })}
           </ul>
           <Reveal>
             <CardBeam items={items} />

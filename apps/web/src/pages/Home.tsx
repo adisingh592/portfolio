@@ -18,12 +18,12 @@ export default function Home() {
       <AboutPreview />
       <Stats />
       <Capabilities />
-      <BuildWithMe />
       <SelectedWork />
       <LabPreview />
       <Process />
       <TechnologyMarquee />
       <ContactPreview />
+      <BuildWithMe />
     </>
   );
 }

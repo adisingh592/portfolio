@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
+import { useNavigate } from "react-router";
 
 /*
  * Card beam: a row of cards drifts through a glowing vertical beam and turns into code
@@ -12,8 +13,10 @@ export type BeamItem = {
   key: string;
   /** Lines of code the card's "scanned" side is filled with. */
   code: readonly string[];
-  /** The card's front face. */
+  /** The card's front face. Use `group-hover:` classes for its hover state. */
   face: ReactNode;
+  /** Where clicking the card goes. */
+  href?: string;
 };
 
 type Layout = { width: number; cardW: number; cardH: number; gap: number; count: number };
@@ -57,7 +60,21 @@ export function CardBeam({ items, className }: { items: readonly BeamItem[]; cla
   const [layout, setLayout] = useState<Layout | null>(null);
 
   // Motion state lives in a ref so the loop never re-renders React.
-  const motion = useRef({ offset: 0, velocity: BASE_SPEED, direction: -1, dragging: false, lastX: 0, dragV: 0 });
+  const motion = useRef({
+    offset: 0,
+    velocity: BASE_SPEED,
+    direction: -1,
+    dragging: false,
+    lastX: 0,
+    dragV: 0,
+    moved: 0,
+    downCard: -1,
+    hovered: -1,
+    // Pointer position inside the row, for the particles to react to.
+    px: -1e4,
+    py: -1e4,
+  });
+  const navigate = useNavigate();
 
   // Size the row to its container.
   useEffect(() => {
@@ -141,6 +158,15 @@ export function CardBeam({ items, className }: { items: readonly BeamItem[]; cla
       tw: 0.02 + Math.random() * 0.06,
     });
 
+    // Motes drift a little with page scroll.
+    let lastScrollY = window.scrollY;
+    let scrollKick = 0;
+    const onScroll = () => {
+      scrollKick += (window.scrollY - lastScrollY) * 0.12;
+      lastScrollY = window.scrollY;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+
     let scanning = false;
     let glow = 1;
     let intensity = 1;
@@ -180,23 +206,41 @@ export function CardBeam({ items, className }: { items: readonly BeamItem[]; cla
     const drawBack = (dt: number) => {
       backCtx.clearRect(0, 0, W, H);
       backCtx.globalCompositeOperation = "lighter";
+      const { px, py } = motion.current;
+      const kick = Math.max(-6, Math.min(6, scrollKick));
+      scrollKick *= 0.85;
       for (const p of motes) {
         p.x += p.v * dt;
+        p.y -= kick * (p.r / 7);
+        // Gently push motes away from the cursor and brighten them a touch.
+        let boost = 0;
+        const dx = p.x - px;
+        const dy = p.y - py;
+        const d = Math.hypot(dx, dy);
+        if (d < 130 && d > 0.01) {
+          const f = 1 - d / 130;
+          p.x += (dx / d) * f * 1.6;
+          p.y += (dy / d) * f * 1.6;
+          boost = f * 0.35;
+        }
         if (p.x > W + 10) {
           p.x = -10;
           p.y = Math.random() * H;
         }
+        if (p.y < -10) p.y = H + 10;
+        else if (p.y > H + 10) p.y = -10;
         const r = Math.random();
         if (r < 0.1) p.a = Math.max(0.05, p.a - 0.05);
         else if (r < 0.2) p.a = Math.min(0.6, p.a + 0.05);
-        backCtx.globalAlpha = p.a;
+        backCtx.globalAlpha = Math.min(1, p.a + boost);
         backCtx.drawImage(dot, p.x - p.r, p.y - p.r, p.r * 2, p.r * 2);
       }
     };
 
     const drawBeam = () => {
       const k = 0.05;
-      glow += ((scanning ? 3.2 : 1) - glow) * k;
+      const lift = motion.current.hovered >= 0 ? 0.4 : 0;
+      glow += ((scanning ? 3.2 : 1) + lift - glow) * k;
       intensity += ((scanning ? 1.8 : 0.8) - intensity) * k;
       fade += ((scanning ? 35 : 55) - fade) * k;
 
@@ -268,8 +312,9 @@ export function CardBeam({ items, className }: { items: readonly BeamItem[]; cla
       last = now;
       const m = motion.current;
       if (!m.dragging) {
-        // Ease a flick back down to the cruising speed.
-        m.velocity = BASE_SPEED + (m.velocity - BASE_SPEED) * Math.pow(0.95, dt * 60);
+        // Ease a flick back to cruising speed, or to a stop while a card is hovered.
+        const cruise = m.hovered >= 0 ? 0 : BASE_SPEED;
+        m.velocity = cruise + (m.velocity - cruise) * Math.pow(m.hovered >= 0 ? 0.9 : 0.95, dt * 60);
         m.offset += m.velocity * m.direction * dt;
       }
       placeCards();
@@ -314,21 +359,32 @@ export function CardBeam({ items, className }: { items: readonly BeamItem[]; cla
       io.disconnect();
       window.clearInterval(shimmer);
       document.removeEventListener("visibilitychange", onVisibility);
+      window.removeEventListener("scroll", onScroll);
     };
   }, [layout, items]);
 
+  const cardIndexAt = (target: EventTarget) => {
+    const el = (target as HTMLElement).closest<HTMLElement>("[data-card]");
+    return el ? Number(el.dataset.card) : -1;
+  };
   const onPointerDown = (e: ReactPointerEvent<HTMLDivElement>) => {
     const m = motion.current;
     m.dragging = true;
     m.lastX = e.clientX;
     m.dragV = 0;
+    m.moved = 0;
+    m.downCard = cardIndexAt(e.target);
     e.currentTarget.setPointerCapture(e.pointerId);
   };
   const onPointerMove = (e: ReactPointerEvent<HTMLDivElement>) => {
     const m = motion.current;
+    const r = e.currentTarget.getBoundingClientRect();
+    m.px = e.clientX - r.left;
+    m.py = e.clientY - r.top;
     if (!m.dragging) return;
     const dx = e.clientX - m.lastX;
     m.offset += dx;
+    m.moved += Math.abs(dx);
     m.dragV = dx * 60;
     m.lastX = e.clientX;
   };
@@ -336,10 +392,21 @@ export function CardBeam({ items, className }: { items: readonly BeamItem[]; cla
     const m = motion.current;
     if (!m.dragging) return;
     m.dragging = false;
+    // A press that barely moved is a click: open the card's link.
+    if (m.moved < 6 && m.downCard >= 0) {
+      const href = items[m.downCard % items.length]?.href;
+      if (href) navigate(href);
+      return;
+    }
     if (Math.abs(m.dragV) > 30) {
       m.velocity = Math.abs(m.dragV);
       m.direction = m.dragV > 0 ? 1 : -1;
     }
+  };
+  const onPointerLeave = () => {
+    const m = motion.current;
+    m.px = m.py = -1e4;
+    m.hovered = -1;
   };
 
   const H = layout ? layout.cardH + 90 : 300;
@@ -364,6 +431,7 @@ export function CardBeam({ items, className }: { items: readonly BeamItem[]; cla
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerUp}
+        onPointerLeave={onPointerLeave}
       >
         {layout &&
           Array.from({ length: layout.count }, (_, i) => (
@@ -372,7 +440,14 @@ export function CardBeam({ items, className }: { items: readonly BeamItem[]; cla
               ref={(el) => {
                 cardRefs.current[i] = el;
               }}
-              className="absolute left-0 will-change-transform"
+              data-card={i}
+              onPointerEnter={(e) => {
+                if (e.pointerType === "mouse") motion.current.hovered = i;
+              }}
+              onPointerLeave={() => {
+                if (motion.current.hovered === i) motion.current.hovered = -1;
+              }}
+              className={`group absolute left-0 will-change-transform ${items[i % items.length].href ? "cursor-pointer" : ""}`}
               style={{ top: (H - layout.cardH) / 2, width: layout.cardW, height: layout.cardH }}
             >
               <pre
