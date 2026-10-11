@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent } from "react";
 import { Link } from "react-router";
 import { ROUTES } from "@portfolio/shared";
+import { cn } from "@portfolio/ui";
 import type { Project } from "@/data/projects";
 import { useFinePointer } from "@/hooks/useMediaQuery";
 import { ParticleImage, particlePresets } from "@/components/motion/ParticleImage";
@@ -69,7 +70,7 @@ function useTilt(disabled: boolean) {
   };
 }
 
-export function VoyageSlider({ projects }: { projects: readonly Project[] }) {
+export function VoyageSlider({ projects, className }: { projects: readonly Project[]; className?: string }) {
   const n = projects.length;
   const reduce = useReducedMotion() ?? false;
   const finePointer = useFinePointer();
@@ -130,7 +131,7 @@ export function VoyageSlider({ projects }: { projects: readonly Project[] }) {
   return (
     <div
       ref={rootRef}
-      className="voyage relative isolate overflow-hidden"
+      className={cn("voyage relative isolate flex flex-col justify-center overflow-hidden", className)}
       data-revealed={revealed || undefined}
       data-intro={intro || undefined}
       onPointerDown={onPointerDown}
