@@ -8,7 +8,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { SectionHeader } from "@/components/ui/SectionLabel";
 import { VoyageSlider } from "@/components/ui/VoyageSlider";
 
-const SNAP_S = 0.9; // seconds for the zoom and the scroll that goes with it
+const SNAP_S = 0.6; // seconds for the zoom and the scroll that goes with it
 const EASE = [0.76, 0, 0.24, 1] as const;
 
 /** Smooth-scroll the window to `y`, then call `done`. Uses Lenis when it's running. */

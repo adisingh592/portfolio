@@ -124,8 +124,8 @@ img {
 /* Voyage slider (Selected work): 3D project cards */
 .voyage {
   --slide-width: min(56vw, 300px);
-  --slide-duration: 800ms;
-  --slide-ease: ease;
+  --slide-duration: 480ms;
+  --slide-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 @media (min-width: 768px) {
   .voyage { --slide-width: min(25vw, 300px); }
@@ -291,7 +291,7 @@ img {
   white-space: nowrap;
   transition: opacity var(--slide-duration) var(--slide-ease), transform var(--slide-duration) var(--slide-ease);
 }
-.voyage-info[data-role="current"] .voyage-text span { opacity: 1; transform: none; transition-delay: 250ms; }
+.voyage-info[data-role="current"] .voyage-text span { opacity: 1; transform: none; transition-delay: 140ms; }
 .voyage-info:not([data-role="current"]) .voyage-text span { opacity: 0; transform: translate3d(0, 100%, 0); }
 
 .voyage-text [data-title] {
