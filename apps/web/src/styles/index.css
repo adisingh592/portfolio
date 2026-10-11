@@ -316,3 +316,25 @@ img {
   font-weight: 300;
   color: var(--color-fg-2);
 }
+
+/* "With me, you can" (Build with me): lead-in sticks mid-screen while the list scrolls through */
+.build-with-me { --start: 50vh; }
+.build-header {
+  top: calc((var(--count) - 1) * -1lh);
+  padding-top: calc(var(--start) - 0.5lh);
+  margin-bottom: 50vh;
+  font-size: clamp(1.25rem, 4.5vw, 4rem);
+  line-height: 1.2;
+}
+.build-lead {
+  position: sticky;
+  top: calc(var(--start) - 0.5lh);
+  margin: 0;
+  font-size: inherit;
+  color: var(--color-fg-3);
+}
+.build-line {
+  color: var(--color-fg);
+  opacity: calc(0.16 + var(--on, 0) * 0.84);
+  text-shadow: 0 0 calc(var(--on, 0) * 28px) rgb(255 255 255 / calc(var(--on, 0) * 0.25));
+}

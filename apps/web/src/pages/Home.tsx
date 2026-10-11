@@ -1,5 +1,6 @@
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { AboutPreview } from "@/components/sections/AboutPreview";
+import { BuildWithMe } from "@/components/sections/BuildWithMe";
 import { Capabilities } from "@/components/sections/Capabilities";
 import { ContactPreview } from "@/components/sections/ContactPreview";
 import { Hero } from "@/components/sections/Hero";
@@ -17,6 +18,7 @@ export default function Home() {
       <AboutPreview />
       <Stats />
       <Capabilities />
+      <BuildWithMe />
       <SelectedWork />
       <LabPreview />
       <Process />
